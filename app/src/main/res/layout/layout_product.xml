@@ -6,10 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp"
-    android:layout_weight="1"
     android:background="@drawable/border_background"
     android:elevation="4dp"
-
     >
 
     <!-- Ảnh sản phẩm -->

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -9,8 +8,7 @@
         android:id="@+id/cbProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        />
+        android:layout_gravity="center_vertical"/>
 
     <!-- Hình ảnh sản phẩm -->
     <ImageView
@@ -34,8 +32,7 @@
             android:text="Tên sản phẩm"
             android:textSize="20dp"
             android:textColor="@color/primary"
-            android:layout_marginBottom="8dp"
-             />
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/productPrice"
@@ -44,14 +41,34 @@
             android:text="Giá: 100,000 VND"
             android:textSize="22dp"
             android:textStyle="bold"
-            android:textColor="@color/redButton"
-            />
+            android:textColor="@color/redButton" />
+
         <TextView
             android:id="@+id/productQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Số lượng"
             android:textSize="16dp"/>
-    </LinearLayout>
 
+        <!-- Các nút tăng giảm số lượng -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/decreaseQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/increaseQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="20sp"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -3,8 +3,6 @@ package com.example.salephone;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
-import android.net.http.UrlResponseInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,11 +10,11 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.salephone.database.CreateDatabase;
 import com.example.salephone.entity.Product;
 
@@ -35,11 +33,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home);
 
-        //create database and get data to gridview
-        getData();
-
         //link elements
         getWidget();
+
+        //create database and get data to gridview
+        getData();
 
         bannerFlipper();
 
@@ -55,8 +53,6 @@ public class HomeActivity extends AppCompatActivity {
         createDatabase.ensureAdminAccountExists();
 
         CreateDatabase db = new CreateDatabase(this);
-//        db.addProduct("iPhone 15 Pro", 39990000, "Smartphone from Apple with ProMotion display",
-//        "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/a/galaxy-a15-xanh-01.png");
 
         // Lấy danh sách sản phẩm từ cơ sở dữ liệu
         List<Product> popularProducts = createDatabase.getAllProduct();
@@ -73,7 +69,13 @@ public class HomeActivity extends AppCompatActivity {
 
             productName.setText(product.getName());
             productPrice.setText("Giá: " + product.getPrice() + " VND");
-            //productImage.setImageResource();
+            // Dùng Picasso để tải hình ảnh từ URL
+            String imageUrl = product.getImage_url(); // Lấy URL ảnh từ đối tượng Product
+            Glide.with(this)
+                    .load(imageUrl) // URL ảnh
+                    .placeholder(R.drawable.iphone_logo) // Hình ảnh mặc định khi tải
+                    .error(R.drawable.samsung_logo) // Hình ảnh lỗi nếu không tải được
+                    .into(productImage); // Set vào ImageView
 
             // Thêm view sản phẩm vào GridLayout
             gridLayoutProducts.addView(productView);
